@@ -6,415 +6,189 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="theme-color" content="#FEFBF6" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#151210" media="(prefers-color-scheme: dark)">
-<title>NourishPhD</title>
-<link rel="manifest" href="manifest.json">
-<link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxOTIgMTkyIj48cmVjdCB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgcng9IjQwIiBmaWxsPSIjQzA1NjIxIi8+PHRleHQgeD0iOTYiIHk9IjEyMCIgZm9udC1zaXplPSI5MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0id2hpdGUiPvCfjL8</link>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#FAF7F2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#13110E" media="(prefers-color-scheme: dark)">
+<title>NourishMe</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--fn-display:'Fraunces',serif;--fn-body:'DM Sans',sans-serif;--bg:#FEFBF6;--fg:#1C1917;--card:#FFFFFF;--border:#E8E0D4;--muted:#8C8279;--accent:#C05621;--ring-bg:#F3EDE4;--hint-bg:#FFF8F0;--hint-fg:#A0622D;--nav-bg:rgba(255,253,251,0.92)}
-@media(prefers-color-scheme:dark){:root{--bg:#151210;--fg:#F0EBE3;--card:#1E1A17;--border:#332D27;--muted:#8C8279;--accent:#E8913A;--ring-bg:#262018;--hint-bg:#261D14;--hint-fg:#D4954A;--nav-bg:rgba(26,22,19,0.92)}}
+:root{--fd:'Playfair Display',serif;--fb:'Outfit',sans-serif;--bg:#FAF7F2;--fg:#1A1612;--card:#FFFFFF;--bd:#E6DDD0;--mt:#8A7E72;--ac:#B85A2B;--trk:#F0EAE0;--hint-bg:#FEF6EE;--hint-fg:#96622E;--hint-bd:#F0D9BD;--nav-bg:rgba(250,247,242,0.94)}
+@media(prefers-color-scheme:dark){:root{--bg:#13110E;--fg:#F0EAE0;--card:#1C1915;--bd:#302A22;--mt:#8A7E72;--ac:#E0863A;--trk:#231F1A;--hint-bg:#261E14;--hint-fg:#D49A52;--hint-bd:#3A2E1E;--nav-bg:rgba(19,17,14,0.94)}}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;overflow:hidden}
-body{font-family:var(--fn-body);background:var(--bg);color:var(--fg)}
-button{font-family:var(--fn-body);cursor:pointer;border:none;background:none;transition:transform 0.1s,opacity 0.15s}
+body{font-family:var(--fb);background:var(--bg);color:var(--fg)}
+button{font-family:var(--fb);cursor:pointer;border:none;background:none;transition:transform 0.1s,opacity 0.12s}
 button:active{transform:scale(0.97);opacity:0.85}
 ::-webkit-scrollbar{display:none}
-.app{max-width:430px;margin:0 auto;height:100vh;height:100dvh;position:relative;overflow:hidden;display:flex;flex-direction:column}
-.content{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:80px}
-.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:var(--nav-bg);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid var(--border);display:flex;justify-content:space-around;align-items:center;padding:8px 0 calc(8px + env(safe-area-inset-bottom));z-index:100}
-.nav-btn{display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 16px;color:var(--muted);transition:color 0.2s}
-.nav-btn.active{color:var(--accent)}
-.nav-btn span{font-size:10px;font-weight:400}.nav-btn.active span{font-weight:600}
-.page{padding:0 20px 20px;animation:fadeUp 0.35s ease both}
-@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-.section{background:var(--card);border-radius:20px;padding:20px;margin-bottom:14px;border:1px solid var(--border)}
-.section-sm{background:var(--card);border-radius:14px;padding:14px 16px;margin-bottom:8px;border:1px solid var(--border)}
-h1{font-family:var(--fn-display);font-size:26px;font-weight:700;color:var(--fg)}
-h3{font-family:var(--fn-display);font-size:14px;font-weight:600;color:var(--fg);margin-bottom:10px}
-.sub{font-size:12px;color:var(--muted);margin-top:4px}
-.date{font-size:12px;color:var(--muted);letter-spacing:0.04em;text-transform:uppercase;margin-bottom:2px}
-.chip{display:inline-block;padding:6px 13px;border-radius:20px;font-size:12px;border:1px solid var(--border);background:var(--card);color:var(--fg);margin:3px;transition:all 0.2s}
-.chip.active{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:600}
-.filter-btn{padding:6px 14px;border-radius:16px;font-size:11px;white-space:nowrap;border:1px solid var(--border);color:var(--muted);margin-right:6px;transition:all 0.2s}
-.filter-btn.active{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:600}
-.macro-bar{height:5px;border-radius:3px;background:var(--ring-bg);overflow:hidden;margin-top:3px}
-.macro-fill{height:100%;border-radius:3px;transition:width 0.5s ease}
-.hint{margin-top:14px;padding:10px 14px;background:var(--hint-bg);border-radius:10px;font-size:12px;color:var(--hint-fg);line-height:1.5}
-.recipe-card{background:var(--card);border-radius:16px;padding:16px;margin-bottom:10px;border:1px solid var(--border)}
-.tag{font-size:9px;padding:2px 8px;border-radius:8px;font-weight:600;text-transform:uppercase}
-.ing-tag{padding:2px 8px;border-radius:6px;font-size:10px;display:inline-block;margin:2px}
-.log-btn{padding:8px 14px;border-radius:10px;background:var(--accent);color:#fff;font-size:11px;font-weight:600;white-space:nowrap}
-.paper-card{padding:14px;border-radius:12px;margin-bottom:8px;cursor:pointer;transition:all 0.2s}
-.stat-card{padding:14px;border-radius:12px;margin-bottom:8px;background:var(--ring-bg);border:1px solid var(--border)}
-.skill-card{background:var(--card);border-radius:16px;padding:16px;margin-bottom:10px;border:1px solid var(--border)}
-.metric-box{padding:12px;border-radius:10px;background:var(--ring-bg);text-align:center}
-.metric-val{font-size:16px;font-weight:700;font-family:var(--fn-display);color:var(--fg)}
-.metric-label{font-size:10px;color:var(--muted);margin-top:2px}
-.splash{position:fixed;inset:0;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:999;transition:opacity 0.5s}
-.splash.hide{opacity:0;pointer-events:none}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes splash{0%{opacity:1}80%{opacity:1}100%{opacity:0}}
+.splash{position:fixed;inset:0;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:999;animation:splash 1.4s ease forwards;pointer-events:none}
 </style>
 </head>
 <body>
 <div id="root"></div>
+<div class="splash"><div style="font-size:52px;margin-bottom:10px">🌿</div><div style="font-family:var(--fd);font-size:24px;font-weight:700;color:var(--fg)">NourishMe</div><div style="font-size:12px;color:var(--mt);margin-top:4px">Your weight-gain companion</div></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
 <script>
-const e=React.createElement,{useState,useEffect,useRef,useCallback}=React;
-
-const TARGETS={calories:2200,protein:75,carbs:280,fat:70};
-
-const INGREDIENTS=["Rice","Dal","Paneer","Chickpeas","Potato","Spinach","Tomato","Onion","Curd/Yogurt","Milk","Eggs","Bread","Oats","Banana","Peanuts","Ghee","Coconut","Lentils","Mushroom","Capsicum","Cauliflower","Peas","Tofu","Cheese"];
-
+const h=React.createElement,{useState:S,useEffect:E,useRef:RR}=React;
+const PROFILE={dailyCal:2200,protein:90,carbs:285,fat:68};
 const RECIPES=[
-{name:"Paneer Butter Masala",ing:["Paneer","Tomato","Onion","Ghee"],cal:480,p:22,c:18,f:34,t:30,meal:"lunch",tip:"Add cream for extra calories"},
-{name:"Chole (Chickpea Curry)",ing:["Chickpeas","Tomato","Onion"],cal:350,p:18,c:52,f:8,t:35,meal:"lunch",tip:"Pair with rice + ghee for surplus"},
-{name:"Dal Tadka + Rice",ing:["Dal","Rice","Ghee","Tomato","Onion"],cal:520,p:20,c:78,f:14,t:25,meal:"lunch",tip:"Use toor dal for higher protein"},
-{name:"Palak Paneer",ing:["Paneer","Spinach","Onion","Ghee"],cal:380,p:20,c:12,f:28,t:30,meal:"lunch",tip:"Blend cashews in for richness"},
-{name:"Aloo Paratha + Curd",ing:["Potato","Curd/Yogurt","Ghee"],cal:450,p:12,c:58,f:20,t:25,meal:"breakfast",tip:"Stuff with extra ghee for density"},
-{name:"Egg Bhurji + Toast",ing:["Eggs","Bread","Onion","Tomato"],cal:380,p:24,c:32,f:18,t:15,meal:"breakfast",tip:"Add cheese for extra cal"},
-{name:"PB Banana Oats",ing:["Oats","Banana","Peanuts","Milk"],cal:520,p:18,c:72,f:20,t:10,meal:"breakfast",tip:"Top with honey and seeds"},
-{name:"Paneer Tikka Wrap",ing:["Paneer","Bread","Capsicum","Onion"],cal:420,p:24,c:38,f:20,t:20,meal:"lunch",tip:"Use whole wheat roti"},
-{name:"Mushroom Masala + Rice",ing:["Mushroom","Rice","Tomato","Onion"],cal:380,p:14,c:62,f:10,t:25,meal:"dinner",tip:"Add peas for extra protein"},
-{name:"Curd Rice",ing:["Rice","Curd/Yogurt"],cal:320,p:10,c:58,f:6,t:10,meal:"dinner",tip:"Calorie-dense with ghee tempering"},
-{name:"Rajma Chawal",ing:["Lentils","Rice","Tomato","Onion"],cal:480,p:22,c:76,f:8,t:35,meal:"dinner",tip:"Soak kidney beans overnight"},
-{name:"Tofu Bhurji",ing:["Tofu","Onion","Tomato","Capsicum"],cal:280,p:20,c:12,f:18,t:15,meal:"breakfast",tip:"Crumble firm tofu for best texture"},
-{name:"Coconut Lentil Soup",ing:["Lentils","Coconut","Tomato"],cal:340,p:16,c:38,f:14,t:25,meal:"dinner",tip:"Add rice on the side"},
-{name:"Masala Dosa",ing:["Rice","Potato","Onion","Ghee"],cal:400,p:8,c:60,f:16,t:30,meal:"breakfast",tip:"Fermented batter = gut health"},
-{name:"Cheese Toast + Banana Shake",ing:["Bread","Cheese","Banana","Milk"],cal:500,p:18,c:62,f:22,t:10,meal:"snack",tip:"Quick 500-cal snack in 10 min"},
-{name:"Peanut Chikki + Milk",ing:["Peanuts","Milk"],cal:350,p:16,c:28,f:22,t:5,meal:"snack",tip:"Jaggery + peanut — buy or make"},
-{name:"Paneer Stuffed Paratha",ing:["Paneer","Ghee","Curd/Yogurt"],cal:480,p:22,c:42,f:26,t:25,meal:"breakfast",tip:"High-cal breakfast champion"},
-{name:"Vegetable Pulao",ing:["Rice","Peas","Cauliflower","Ghee"],cal:420,p:10,c:68,f:14,t:25,meal:"lunch",tip:"Add fried cashews on top"},
-{name:"Matar Paneer",ing:["Paneer","Peas","Tomato","Onion"],cal:400,p:22,c:24,f:26,t:30,meal:"dinner",tip:"Creamy base with cashew paste"},
-{name:"Banana Peanut Smoothie",ing:["Banana","Peanuts","Milk","Oats"],cal:480,p:18,c:64,f:20,t:5,meal:"snack",tip:"Blend thick — add honey"},
-{name:"Gobi Aloo (Dry)",ing:["Cauliflower","Potato","Onion","Ghee"],cal:340,p:8,c:42,f:16,t:25,meal:"dinner",tip:"Great with roti + dal combo"},
-{name:"Spinach Dal",ing:["Spinach","Dal","Tomato","Ghee"],cal:300,p:18,c:38,f:8,t:25,meal:"dinner",tip:"Iron-rich and protein-dense"},
-{name:"Egg Fried Rice",ing:["Eggs","Rice","Onion","Peas"],cal:420,p:18,c:62,f:12,t:15,meal:"lunch",tip:"Toss with soy sauce and sesame"},
-{name:"Peanut Poha",ing:["Rice","Peanuts","Onion","Potato"],cal:380,p:12,c:52,f:16,t:15,meal:"breakfast",tip:"Flattened rice — quick and filling"},
+{id:"b1",name:"Aloo Paratha + Curd",meal:"breakfast",cal:480,p:14,c:58,f:22,t:25,ing:["Potato","Whole Wheat Flour","Ghee","Curd/Yogurt"],steps:["Boil & mash 2 potatoes with salt, chili, cumin","Knead soft dough with whole wheat flour","Stuff dough balls with potato mix, roll flat","Cook on tawa with generous ghee both sides","Serve with thick curd and pickle"],tip:"Use 2 tsp ghee per paratha — each tsp adds 45 kcal.",tags:["high-cal","comfort"]},
+{id:"b2",name:"Paneer Paratha + Lassi",meal:"breakfast",cal:560,p:26,c:48,f:30,t:30,ing:["Paneer","Whole Wheat Flour","Ghee","Curd/Yogurt","Sugar"],steps:["Crumble 100g paneer, mix with onion, chili, salt","Knead dough, stuff with paneer mix, roll gently","Cook on tawa with ghee until golden","Blend curd + sugar + cardamom for sweet lassi","Serve together"],tip:"560 kcal with 26g protein. The lassi alone adds ~150 kcal.",tags:["high-cal","protein","weekend"]},
+{id:"b3",name:"Masala Oats + Banana Shake",meal:"breakfast",cal:520,p:20,c:74,f:18,t:15,ing:["Oats","Milk","Banana","Peanuts","Onion","Tomato"],steps:["Sauté onion, tomato, peas with cumin and turmeric","Add 1 cup oats + 2 cups water/milk, cook 5 min","Top with roasted peanuts","Blend banana + full-fat milk + peanut butter","Serve oats with shake on side"],tip:"The banana-peanut shake alone is 280 kcal. Make it thick.",tags:["quick","high-cal"]},
+{id:"b4",name:"Egg Bhurji + Buttered Toast",meal:"breakfast",cal:420,p:24,c:36,f:22,t:15,ing:["Eggs","Bread","Butter","Onion","Tomato"],steps:["Heat butter, sauté onion, tomato, chili","Beat 3 eggs with salt and turmeric, scramble","Toast 2 slices, spread butter generously","Serve bhurji on toast"],tip:"3 eggs = 18g protein. Add cheese on top for +80 kcal.",tags:["protein","quick","egg"]},
+{id:"b5",name:"Poha with Peanuts",meal:"breakfast",cal:380,p:12,c:54,f:16,t:15,ing:["Flattened Rice","Peanuts","Onion","Potato","Lemon"],steps:["Wash poha, drain","Fry peanuts in oil until golden","Sauté mustard seeds, curry leaves, onion, potato","Add poha, turmeric, salt, sugar — toss","Squeeze lemon, garnish with coriander"],tip:"Add glass of full-fat milk to push to 500+ kcal.",tags:["quick","traditional"]},
+{id:"b6",name:"Besan Chilla + Chutney",meal:"breakfast",cal:350,p:16,c:38,f:16,t:15,ing:["Besan","Onion","Tomato","Curd/Yogurt"],steps:["Mix besan with water, salt, turmeric, ajwain","Add chopped onion, tomato, chili, coriander","Pour on hot tawa, spread thin","Cook both sides with oil until crispy","Serve with green chutney and curd"],tip:"Besan is protein-rich (20g/100g). Make 3 chillas.",tags:["protein","quick"]},
+{id:"b7",name:"Upma + Coconut Chutney",meal:"breakfast",cal:400,p:10,c:52,f:18,t:20,ing:["Semolina","Onion","Cashews","Ghee","Coconut"],steps:["Dry roast rava until fragrant","Sauté mustard seeds, cashews, curry leaves in ghee","Add onion, green chili","Add 2.5 cups water, salt — boil","Add rava slowly, stir, cook covered 3 min"],tip:"Use 2 tbsp ghee instead of oil for extra calories.",tags:["traditional","south-indian"]},
+{id:"l1",name:"Dal Tadka + Jeera Rice",meal:"lunch",cal:580,p:22,c:82,f:18,t:30,ing:["Toor Dal","Rice","Ghee","Tomato","Onion","Garlic","Cumin"],steps:["Pressure cook toor dal with turmeric","Cook rice with cumin seeds","Heat ghee, add garlic, cumin, dry chili, hing","Add tomato, cook until soft","Pour tadka into dal","Serve rice with dal and 1 tbsp extra ghee"],tip:"Extra ghee on rice = 135 kcal you won't notice.",tags:["staple","high-cal"]},
+{id:"l2",name:"Rajma Chawal",meal:"lunch",cal:520,p:24,c:78,f:10,t:40,ing:["Kidney Beans","Rice","Tomato","Onion","Ginger","Garlic"],steps:["Soak rajma overnight, pressure cook","Sauté onion-ginger-garlic paste","Add tomato puree, rajma masala","Add cooked rajma, simmer 15 min","Mash some beans for thick gravy","Serve over basmati rice"],tip:"Rajma + rice = complete protein. Equivalent to non-veg meal.",tags:["protein","meal-prep"]},
+{id:"l3",name:"Paneer Butter Masala + Naan",meal:"lunch",cal:650,p:28,c:52,f:38,t:35,ing:["Paneer","Tomato","Onion","Butter","Cream","Cashews"],steps:["Blend tomato + onion + cashews smooth","Cook paste in butter until oil separates","Add garam masala, chili, salt, sugar","Add paneer cubes, simmer 5 min","Finish with cream","Serve with wheat naan or roti"],tip:"Highest-cal lunch at 650 kcal. Cashew-cream = 200+ kcal alone.",tags:["high-cal","weekend"]},
+{id:"l4",name:"Chole + Rice",meal:"lunch",cal:540,p:20,c:72,f:18,t:40,ing:["Chickpeas","Onion","Tomato","Rice","Oil"],steps:["Soak chickpeas overnight","Pressure cook until tender","Sauté onion, add ginger-garlic","Add tomato, chole masala, amchur","Cook until thick, serve with rice"],tip:"Chickpeas: 19g protein per cup cooked.",tags:["protein","traditional"]},
+{id:"l5",name:"Vegetable Biryani",meal:"lunch",cal:550,p:14,c:76,f:22,t:45,ing:["Basmati Rice","Mixed Vegetables","Onion","Curd/Yogurt","Ghee","Saffron"],steps:["Soak basmati 30 min, par-boil","Sauté onions in ghee until golden","Layer: rice, veggies in curd-spice, fried onions, saffron milk","Seal pot, cook on low 20 min","Rest 5 min, serve with raita"],tip:"Rice absorbs ghee — calorie-dense without feeling heavy.",tags:["weekend","special"]},
+{id:"l6",name:"Palak Paneer + Roti",meal:"lunch",cal:480,p:24,c:42,f:26,t:30,ing:["Paneer","Spinach","Onion","Garlic","Cream","Whole Wheat Flour","Ghee"],steps:["Blanch spinach, blend smooth","Sauté onion, garlic in ghee","Add spinach puree, cook 5 min","Add paneer, cream, garam masala","Serve with 2-3 rotis"],tip:"Spinach = iron. Paneer = 18g protein/100g. Most balanced meal.",tags:["iron-rich","balanced"]},
+{id:"l7",name:"Matar Paneer + Pulao",meal:"lunch",cal:560,p:26,c:62,f:24,t:35,ing:["Paneer","Peas","Tomato","Onion","Rice","Ghee","Cashews"],steps:["Sauté onion, add ginger-garlic","Add tomato, cook until oil separates","Add peas, paneer, garam masala, cream","Cook rice with spices, fried onions, ghee","Garnish pulao with fried cashews"],tip:"Peas add 8g protein/cup. 26g total protein.",tags:["protein","comfort"]},
+{id:"d1",name:"Khichdi + Ghee + Papad",meal:"dinner",cal:450,p:16,c:62,f:16,t:25,ing:["Rice","Moong Dal","Ghee","Cumin","Turmeric"],steps:["Wash rice and moong dal","Pressure cook with turmeric, salt","Heat ghee, add cumin, hing for tadka","Pour over khichdi","Roast papad, top with ghee"],tip:"Easiest to digest. Ghee on top = your calories.",tags:["easy-digest","comfort"]},
+{id:"d2",name:"Mushroom Masala + Roti",meal:"dinner",cal:380,p:16,c:48,f:14,t:25,ing:["Mushroom","Onion","Tomato","Whole Wheat Flour","Oil"],steps:["Slice 200g mushrooms","Sauté onion, ginger-garlic","Add tomato, spices","Add mushrooms, cook 8-10 min","Serve with 2-3 rotis"],tip:"Rich in B-vitamins and selenium.",tags:["light","quick"]},
+{id:"d3",name:"Paneer Tikka + Mint Roti",meal:"dinner",cal:460,p:28,c:36,f:24,t:30,ing:["Paneer","Curd/Yogurt","Capsicum","Onion","Whole Wheat Flour","Mint"],steps:["Marinate paneer in curd + tikka spices","Thread with capsicum, onion","Grill on tawa until charred","Make mint rotis with ghee","Serve with green chutney"],tip:"28g protein. Yogurt marinade adds probiotics.",tags:["protein","grilled"]},
+{id:"d4",name:"Mixed Dal + Rice",meal:"dinner",cal:440,p:20,c:68,f:10,t:30,ing:["Toor Dal","Moong Dal","Masoor Dal","Rice","Ghee","Tomato"],steps:["Cook 3 dals together (1:1:1)","Cook rice separately","Make tadka with ghee, cumin, garlic","Add tomato, combine with dal","Serve with ghee and lemon"],tip:"Mixed dals = more complete amino acid profile.",tags:["balanced","traditional"]},
+{id:"d5",name:"Aloo Gobi + Chapati",meal:"dinner",cal:400,p:12,c:56,f:16,t:30,ing:["Potato","Cauliflower","Onion","Tomato","Whole Wheat Flour","Ghee"],steps:["Cut potato and cauliflower","Sauté onion with spices","Add potato first, then cauliflower","Add tomato, cook covered","Serve with 2-3 chapatis"],tip:"Add warm turmeric milk before bed = +150 kcal + better sleep.",tags:["comfort","traditional"]},
+{id:"d6",name:"Coconut Curry + Rice",meal:"dinner",cal:420,p:14,c:52,f:20,t:30,ing:["Coconut","Mixed Vegetables","Coconut Milk","Curry Leaves","Rice"],steps:["Grind coconut with green chili, cumin","Sauté mustard seeds, curry leaves","Add vegetables, cook","Add coconut paste and coconut milk","Simmer gently, serve with rice"],tip:"Coconut milk: 230 kcal/cup. Gentle on stomach.",tags:["south-indian","gentle"]},
+{id:"d7",name:"Egg Curry + Jeera Rice",meal:"dinner",cal:480,p:24,c:58,f:18,t:25,ing:["Eggs","Rice","Onion","Tomato","Cumin","Ginger","Garlic"],steps:["Hard boil 3 eggs, peel, make cuts","Sauté onion, add ginger-garlic","Add tomato, spices, cook thick","Add eggs, simmer 5 min","Serve with jeera rice"],tip:"Eggs have protein value score of 100. 24g complete protein.",tags:["protein","egg"]},
+{id:"s1",name:"Banana PB Shake",meal:"snack",cal:350,p:14,c:48,f:16,t:5,ing:["Banana","Peanut Butter","Milk"],steps:["1 banana + 2 tbsp PB + 1.5 cups milk","Blend thick","Add honey or dates","Drink immediately"],tip:"Your #1 weight gain weapon. 350 kcal in 5 min. Drink EVERY day.",tags:["essential","quick"]},
+{id:"s2",name:"Dry Fruit Ladoo (4 pcs)",meal:"snack",cal:320,p:10,c:32,f:20,t:15,ing:["Dates","Almonds","Cashews","Coconut","Ghee"],steps:["Chop dates, almonds, cashews","Roast coconut","Mix with warm ghee","Roll 4 balls","Fridge — lasts 1 week"],tip:"Meal-prep weekends. 4 ladoos = 320 kcal. Keep at desk.",tags:["meal-prep","portable"]},
+{id:"s3",name:"Paneer Tikka Bites",meal:"snack",cal:250,p:18,c:6,f:18,t:15,ing:["Paneer","Curd/Yogurt","Capsicum","Lemon"],steps:["Cube 100g paneer","Marinate in curd + tikka masala","Pan-fry in butter until golden","Sprinkle chaat masala"],tip:"18g protein snack — vegetarian chicken breast equivalent.",tags:["protein","savory"]},
+{id:"s4",name:"Chana Chaat",meal:"snack",cal:220,p:12,c:32,f:6,t:10,ing:["Chickpeas","Onion","Tomato","Lemon","Chaat Masala"],steps:["1 cup boiled chickpeas","Chop onion, tomato, chili","Mix together","Add lemon, chaat masala, salt","Toss and serve"],tip:"High fiber + protein. Add sev for +50 kcal.",tags:["protein","light"]},
+{id:"s5",name:"Peanut Chikki + Milk",meal:"snack",cal:350,p:16,c:34,f:20,t:5,ing:["Peanuts","Jaggery","Milk"],steps:["Break 2 pieces chikki (~50g)","Heat 1 cup full-fat milk","Add turmeric pinch","Enjoy together"],tip:"Jaggery = iron. Peanuts = cheapest calorie-dense protein.",tags:["traditional","iron"]},
+{id:"s6",name:"Cheese Toast + Banana",meal:"snack",cal:320,p:14,c:38,f:16,t:10,ing:["Bread","Cheese","Tomato","Banana"],steps:["Toast 2 slices","Layer cheese + tomato + oregano","Grill until melted","Eat with banana"],tip:"Zero cooking skill needed. Banana adds 100 kcal.",tags:["quick","easy"]},
+{id:"s7",name:"Roasted Makhana + Nuts",meal:"snack",cal:220,p:8,c:24,f:12,t:10,ing:["Makhana","Ghee","Cashews","Almonds"],steps:["Roast makhana in ghee until crispy","Add cashews, almonds","Season with salt, chaat masala","Store in jar"],tip:"Superfood — low glycemic, high magnesium.",tags:["meal-prep","portable"]},
+{id:"s8",name:"Curd + Honey + Nuts",meal:"snack",cal:280,p:12,c:30,f:14,t:5,ing:["Curd/Yogurt","Honey","Almonds","Walnuts","Banana"],steps:["1 cup thick curd","Drizzle 1 tbsp honey","Top with banana, almonds, walnuts","Mix gently"],tip:"Probiotics + prebiotics + healthy fats = optimal gut health.",tags:["probiotic","quick"]},
 ];
-
-const PAPERS=[
-{id:1,title:"Paper 1",status:"Revision",desc:"Reviewer comments received. Address feedback and resubmit.",color:"#E8913A"},
-{id:2,title:"Paper 2",status:"Drafting",desc:"Draft in progress. Continue analysis and writing.",color:"#5B8C5A"},
-{id:3,title:"Paper 3",status:"Planning",desc:"Needs data organization and initial analysis.",color:"#7B68AE"},
-{id:4,title:"Paper 4",status:"Ideation",desc:"Identify novel angle from existing dataset.",color:"#C4697C"},
-{id:5,title:"Paper 5",status:"Ideation",desc:"Explore statistical methods for new insights.",color:"#4A90A4"},
+const WEEK=[
+{day:"Monday",b:"b3",l:"l1",d:"d1",s1:"s1",s2:"s7",cal:2120,note:"Easy comfort start"},
+{day:"Tuesday",b:"b1",l:"l6",d:"d4",s1:"s3",s2:"s5",cal:2240,note:"Iron-rich day"},
+{day:"Wednesday",b:"b4",l:"l2",d:"d7",s1:"s1",s2:"s2",cal:2280,note:"Protein-heavy"},
+{day:"Thursday",b:"b6",l:"l7",d:"d2",s1:"s8",s2:"s6",cal:2190,note:"Balanced macros"},
+{day:"Friday",b:"b5",l:"l4",d:"d5",s1:"s4",s2:"s1",cal:2180,note:"Traditional comfort"},
+{day:"Saturday",b:"b2",l:"l3",d:"d3",s1:"s2",s2:"s5",cal:2420,note:"High-cal weekend"},
+{day:"Sunday",b:"b7",l:"l5",d:"d6",s1:"s1",s2:"s2",cal:2340,note:"South Indian + prep"},
 ];
+const PANTRY={"Proteins":["Paneer","Eggs","Curd/Yogurt","Chickpeas","Kidney Beans","Moong Dal","Toor Dal","Masoor Dal","Milk","Cheese","Besan"],"Grains":["Rice","Basmati Rice","Whole Wheat Flour","Bread","Oats","Flattened Rice","Semolina"],"Vegetables":["Potato","Onion","Tomato","Spinach","Cauliflower","Peas","Capsicum","Mushroom","Mixed Vegetables"],"Fats & Nuts":["Ghee","Butter","Peanuts","Cashews","Almonds","Walnuts","Coconut","Peanut Butter","Oil","Cream","Coconut Milk"],"Fruits":["Banana","Dates","Lemon","Honey","Jaggery"],"Spices":["Green Chili","Ginger","Garlic","Cumin","Turmeric","Curry Leaves","Mint","Chaat Masala","Makhana","Saffron"]};
+const gr=id=>RECIPES.find(r=>r.id===id);
+const ti=()=>{const d=new Date().getDay();return d===0?6:d-1};
+const ls={g(k,d){try{const v=localStorage.getItem("nm3_"+k);return v?JSON.parse(v):d}catch{return d}},s(k,v){try{localStorage.setItem("nm3_"+k,JSON.stringify(v))}catch{}}};
+const tk=()=>new Date().toISOString().slice(0,10);
+const me=m=>({"breakfast":"\u{1F305}","lunch":"\u{2600}\u{FE0F}","dinner":"\u{1F319}","snack":"\u{1F36A}"}[m]||"\u{1F37D}\u{FE0F}");
 
-const STATS=[
-{m:"Principal Component Analysis",u:"Reduce high-dimensional phenotypic/genotypic data to identify dominant variation patterns.",pp:"3–5"},
-{m:"Mixed-Effects Models",u:"Account for vineyard block, year, and genotype as random/fixed effects in trait analysis.",pp:"2–4"},
-{m:"Correlation Heatmaps",u:"Visualize pairwise relationships among traits (yield, sugar, acidity, phenolics).",pp:"3–5"},
-{m:"ANOVA + Post-hoc (Tukey)",u:"Compare treatment groups or cultivar performance across seasons.",pp:"2–3"},
-{m:"Random Forest",u:"Predict quality traits from input variables; rank feature importance.",pp:"4–5"},
-{m:"Cluster Analysis",u:"Group cultivars or sites by multivariate trait profiles (k-means / hierarchical).",pp:"3–5"},
-{m:"GGE Biplot",u:"Genotype × Environment interaction — standard in viticulture publications.",pp:"4–5"},
-{m:"Structural Equation Modeling",u:"Model causal pathways: environment → physiology → fruit quality.",pp:"5"},
-{m:"Time-Series Decomposition",u:"Multi-year data: decompose seasonal trends, detect anomalies.",pp:"3–4"},
-{m:"Network Analysis",u:"Trait correlation networks — identify hub traits driving multiple outcomes.",pp:"5"},
-];
+function Ring({value,max,size,sw,color,children}){const r=(size-sw)/2,ci=2*Math.PI*r,pc=Math.min(value/max,1);return h("div",{style:{position:"relative",width:size,height:size}},h("svg",{width:size,height:size,viewBox:"0 0 "+size+" "+size},h("circle",{cx:size/2,cy:size/2,r:r,fill:"none",stroke:"var(--trk)",strokeWidth:sw}),h("circle",{cx:size/2,cy:size/2,r:r,fill:"none",stroke:color,strokeWidth:sw,strokeDasharray:pc*ci+" "+ci,strokeLinecap:"round",transform:"rotate(-90 "+size/2+" "+size/2+")",style:{transition:"stroke-dasharray 0.7s"}})),h("div",{style:{position:"absolute",inset:0,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center"}},children))}
 
-const SKILLS=[
-{name:"R / ggplot2",cat:"Data",prog:60,note:"Publication-quality figures"},
-{name:"Python (pandas + scipy)",cat:"Data",prog:40,note:"Statistical analysis & automation"},
-{name:"Academic Writing",cat:"PhD",prog:70,note:"Revising from reviewer feedback"},
-{name:"Data Visualization",cat:"PhD",prog:50,note:"Heatmaps, biplots, multi-panel figures"},
-];
+function Modal({recipe:r,onClose,onLog}){if(!r)return null;return h("div",{style:{position:"fixed",inset:0,zIndex:200}},h("div",{onClick:onClose,style:{position:"absolute",inset:0,background:"rgba(0,0,0,0.5)",backdropFilter:"blur(4px)"}}),h("div",{style:{position:"absolute",bottom:0,left:0,right:0,maxHeight:"88vh",overflowY:"auto",background:"var(--card)",borderRadius:"24px 24px 0 0",padding:24,zIndex:201}},h("div",{style:{width:40,height:4,borderRadius:2,background:"var(--bd)",margin:"0 auto 16px"}}),h("div",{style:{display:"flex",justifyContent:"space-between",marginBottom:16}},h("div",null,h("span",{style:{fontSize:10,textTransform:"uppercase",fontWeight:700,color:"var(--ac)",letterSpacing:"0.06em"}},me(r.meal)+" "+r.meal),h("h2",{style:{fontFamily:"var(--fd)",fontSize:22,fontWeight:700,margin:"4px 0 0"}},r.name)),h("button",{onClick:onClose,style:{fontSize:22,color:"var(--mt)",padding:4}},"\u00D7")),h("div",{style:{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:8,marginBottom:18}},[{l:"Calories",v:r.cal,u:"kcal",cl:"var(--ac)"},{l:"Protein",v:r.p,u:"g",cl:"#E07B4C"},{l:"Carbs",v:r.c,u:"g",cl:"#5B8C5A"},{l:"Fat",v:r.f,u:"g",cl:"#8B6BAE"}].map(function(m){return h("div",{key:m.l,style:{background:"var(--trk)",borderRadius:12,padding:"10px 4px",textAlign:"center"}},h("div",{style:{fontSize:18,fontWeight:700,fontFamily:"var(--fd)",color:m.cl}},m.v),h("div",{style:{fontSize:9,color:"var(--mt)"}},m.u))})),h("div",{style:{display:"flex",gap:6,marginBottom:18,flexWrap:"wrap"}},h("span",{style:{fontSize:11,padding:"4px 12px",borderRadius:20,background:"var(--trk)",color:"var(--mt)"}},"\u23F1 "+r.t+" min")),h("h3",{style:{fontFamily:"var(--fd)",fontSize:14,fontWeight:600,marginBottom:8}},"Ingredients"),h("div",{style:{display:"flex",flexWrap:"wrap",gap:6,marginBottom:18}},(r.ing||[]).map(function(i){return h("span",{key:i,style:{fontSize:11,padding:"4px 12px",borderRadius:10,background:"var(--trk)",color:"var(--mt)"}},i)})),h("h3",{style:{fontFamily:"var(--fd)",fontSize:14,fontWeight:600,marginBottom:10}},"Steps"),(r.steps||[]).map(function(s,i){return h("div",{key:i,style:{display:"flex",gap:12,marginBottom:12}},h("div",{style:{width:24,height:24,borderRadius:"50%",background:"var(--ac)",color:"#fff",fontSize:11,fontWeight:700,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}},i+1),h("p",{style:{fontSize:13,lineHeight:1.6,margin:0}},s))}),r.tip&&h("div",{style:{marginTop:16,padding:16,borderRadius:14,background:"var(--hint-bg)",border:"1px solid var(--hint-bd)"}},h("div",{style:{fontSize:11,fontWeight:700,color:"var(--ac)",marginBottom:4}},"\u{1F9E0} Nutritionist's Note"),h("p",{style:{fontSize:12,color:"var(--hint-fg)",lineHeight:1.6,margin:0}},r.tip)),h("button",{onClick:function(){onLog(r);onClose()},style:{width:"100%",marginTop:20,padding:14,borderRadius:14,background:"var(--ac)",color:"#fff",fontSize:14,fontWeight:700,fontFamily:"var(--fd)"}},"+ Log This Meal ("+r.cal+" kcal)")))}
 
-// ─── Storage ────────────────────────────────────────────────
-const LS={
-  get(k,d){try{const v=localStorage.getItem("nphd_"+k);return v?JSON.parse(v):d}catch(e){return d}},
-  set(k,v){try{localStorage.setItem("nphd_"+k,JSON.stringify(v))}catch(e){}}
-};
-
-function getTodayKey(){return new Date().toISOString().slice(0,10)}
-
-// ─── SVG Icons ───────────────────────────────────────────────
-const I={
-  home:e("svg",{width:22,height:22,viewBox:"0 0 24 24",fill:"none",stroke:"currentColor",strokeWidth:2,strokeLinecap:"round",strokeLinejoin:"round"},e("path",{d:"M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"}),e("polyline",{points:"9 22 9 12 15 12 15 22"})),
-  meal:e("svg",{width:22,height:22,viewBox:"0 0 24 24",fill:"none",stroke:"currentColor",strokeWidth:2,strokeLinecap:"round",strokeLinejoin:"round"},e("path",{d:"M18 8h1a4 4 0 010 8h-1"}),e("path",{d:"M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"}),e("line",{x1:6,y1:1,x2:6,y2:4}),e("line",{x1:10,y1:1,x2:10,y2:4}),e("line",{x1:14,y1:1,x2:14,y2:4})),
-  phd:e("svg",{width:22,height:22,viewBox:"0 0 24 24",fill:"none",stroke:"currentColor",strokeWidth:2,strokeLinecap:"round",strokeLinejoin:"round"},e("path",{d:"M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"}),e("path",{d:"M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"})),
-  grow:e("svg",{width:22,height:22,viewBox:"0 0 24 24",fill:"none",stroke:"currentColor",strokeWidth:2,strokeLinecap:"round",strokeLinejoin:"round"},e("polyline",{points:"22 12 18 12 15 21 9 3 6 12 2 12"})),
-  fire:e("svg",{width:13,height:13,viewBox:"0 0 24 24",fill:"none",stroke:"currentColor",strokeWidth:2,strokeLinecap:"round",strokeLinejoin:"round"},e("path",{d:"M12 12c2-2.96 0-7-1-8 0 3.038-1.773 4.741-3 6-1.226 1.26-2 3.24-2 5a6 6 0 1012 0c0-1.532-1.056-3.94-2-5-1.786 3-2.791 3-4 2z"})),
-  clock:e("svg",{width:13,height:13,viewBox:"0 0 24 24",fill:"none",stroke:"currentColor",strokeWidth:2,strokeLinecap:"round",strokeLinejoin:"round"},e("circle",{cx:12,cy:12,r:10}),e("polyline",{points:"12 6 12 12 16 14"})),
-};
-
-// ─── App ─────────────────────────────────────────────────────
 function App(){
-  const[tab,setTab]=useState("home");
-  const[selIng,setSelIng]=useState([]);
-  const[meals,setMeals]=useState(()=>LS.get("meals_"+getTodayKey(),[]));
-  const[expPaper,setExpPaper]=useState(null);
-  const[showStats,setShowStats]=useState(false);
-  const[mealFilter,setMealFilter]=useState("all");
-  const[splash,setSplash]=useState(true);
-  const[streak,setStreak]=useState(()=>LS.get("streak",0));
-  const[weekLog,setWeekLog]=useState(()=>LS.get("weeklog",{}));
-  const contentRef=useRef(null);
+var _S=S,_E=E;
+var _tab=_S("today"),tab=_tab[0],setTab=_tab[1];
+var _log=_S(function(){return ls.g("log_"+tk(),[])}),logged=_log[0],setLogged=_log[1];
+var _pan=_S(function(){return ls.g("pantry3",[])}),pantry=_pan[0],setPantry=_pan[1];
+var _mod=_S(null),modal=_mod[0],setModal=_mod[1];
+var _wd=_S(ti()),weekDay=_wd[0],setWeekDay=_wd[1];
+var _pc=_S("Proteins"),pCat=_pc[0],setPCat=_pc[1];
+var _w=_S(function(){return ls.g("w_"+tk(),0)}),water=_w[0],setWater=_w[1];
+var _mf=_S("all"),mf=_mf[0],setMf=_mf[1];
+var cr=RR(null);
 
-  useEffect(()=>{setTimeout(()=>setSplash(false),1200)},[]);
-  useEffect(()=>{LS.set("meals_"+getTodayKey(),meals)},[meals]);
-  useEffect(()=>{if(contentRef.current)contentRef.current.scrollTop=0},[tab]);
+_E(function(){ls.s("log_"+tk(),logged)},[logged]);
+_E(function(){ls.s("pantry3",pantry)},[pantry]);
+_E(function(){ls.s("w_"+tk(),water)},[water]);
+_E(function(){if(cr.current)cr.current.scrollTop=0},[tab]);
 
-  // Streak logic
-  useEffect(()=>{
-    const today=getTodayKey();
-    const tc=meals.reduce((s,m)=>s+m.cal,0);
-    if(tc>=TARGETS.calories*0.8){
-      const wl={...weekLog,[today]:tc};
-      setWeekLog(wl);LS.set("weeklog",wl);
-      // count consecutive days
-      let s=0,d=new Date();
-      while(true){const k=d.toISOString().slice(0,10);if(wl[k]&&wl[k]>=TARGETS.calories*0.8){s++;d.setDate(d.getDate()-1)}else break}
-      setStreak(s);LS.set("streak",s);
-    }
-  },[meals]);
+var tot={cal:logged.reduce(function(s,m){return s+m.cal},0),p:logged.reduce(function(s,m){return s+m.p},0),c:logged.reduce(function(s,m){return s+m.c},0),f:logged.reduce(function(s,m){return s+m.f},0)};
+var logR=function(r){setLogged(function(p){return p.concat([Object.assign({},r,{lt:new Date().toLocaleTimeString("en-US",{hour:"2-digit",minute:"2-digit"})})])})};
+var rmR=function(i){setLogged(function(p){return p.filter(function(_,j){return j!==i})})};
+var togP=function(i){setPantry(function(p){return p.indexOf(i)>-1?p.filter(function(x){return x!==i}):p.concat([i])})};
+var rem=PROFILE.dailyCal-tot.cal;
+var grt=function(){var x=new Date().getHours();return x<12?"Good morning":x<17?"Good afternoon":"Good evening"};
 
-  const tot={cal:meals.reduce((s,m)=>s+m.cal,0),p:meals.reduce((s,m)=>s+m.p,0),c:meals.reduce((s,m)=>s+m.c,0),f:meals.reduce((s,m)=>s+m.f,0)};
+// matching
+var getMatches=function(){
+if(!pantry.length)return RECIPES;
+return RECIPES.map(function(r){var mc=r.ing.filter(function(i){return pantry.indexOf(i)>-1}).length;return Object.assign({},r,{mc:mc,tl:r.ing.length})}).filter(function(r){return r.mc>0}).sort(function(a,b){return(b.mc/b.tl)-(a.mc/a.tl)});
+};
 
-  const togIng=i=>setSelIng(p=>p.includes(i)?p.filter(x=>x!==i):[...p,i]);
-
-  const matchR=()=>{
-    if(!selIng.length)return RECIPES;
-    return RECIPES.map(r=>({...r,mc:r.ing.filter(i=>selIng.includes(i)).length})).filter(r=>r.mc>0).sort((a,b)=>(b.mc/b.ing.length)-(a.mc/a.ing.length));
-  };
-
-  const logMeal=r=>setMeals(p=>[...p,{...r,time:new Date().toLocaleTimeString("en-US",{hour:"2-digit",minute:"2-digit"})}]);
-  const rmMeal=i=>setMeals(p=>p.filter((_,j)=>j!==i));
-
-  const greeting=()=>{const h=new Date().getHours();return h<12?"Good morning":h<17?"Good afternoon":"Good evening"};
-  const dateStr=()=>new Date().toLocaleDateString("en-US",{weekday:"long",month:"long",day:"numeric"});
-
-  // ── Splash ──
-  const Splash=()=>e("div",{className:"splash"+(splash?"":" hide"),key:"splash"},
-    e("div",{style:{fontSize:48,marginBottom:12}},"🌿"),
-    e("div",{style:{fontFamily:"var(--fn-display)",fontSize:22,fontWeight:700,color:"var(--fg)"}},"NourishPhD"),
-    e("div",{style:{fontSize:12,color:"var(--muted)",marginTop:4}},"Your personal ecosystem")
-  );
-
-  // ── Home ──
-  const Home=()=>e("div",{className:"page",key:"home"},
-    e("div",{style:{paddingTop:16,marginBottom:20}},
-      e("p",{className:"date"},dateStr()),
-      e("h1",null,greeting()," 🌿"),
-      streak>1&&e("div",{style:{display:"inline-flex",alignItems:"center",gap:4,marginTop:6,padding:"4px 12px",borderRadius:20,background:"var(--hint-bg)",fontSize:11,color:"var(--hint-fg)",fontWeight:600}},
-        "🔥 ",streak,"-day streak"
-      )
-    ),
-    // Calorie ring
-    e("div",{className:"section"},
-      e("div",{style:{display:"flex",alignItems:"center",gap:20}},
-        e("div",{style:{position:"relative",width:100,height:100,flexShrink:0}},
-          e("svg",{width:100,height:100,viewBox:"0 0 100 100"},
-            e("circle",{cx:50,cy:50,r:43,fill:"none",stroke:"var(--ring-bg)",strokeWidth:9}),
-            e("circle",{cx:50,cy:50,r:43,fill:"none",stroke:"var(--accent)",strokeWidth:9,strokeDasharray:`${Math.min(tot.cal/TARGETS.calories,1)*270.2} 270.2`,strokeLinecap:"round",transform:"rotate(-90 50 50)",style:{transition:"stroke-dasharray 0.6s"}})
-          ),
-          e("div",{style:{position:"absolute",top:"50%",left:"50%",transform:"translate(-50%,-50%)",textAlign:"center"}},
-            e("div",{style:{fontSize:20,fontWeight:700,fontFamily:"var(--fn-display)",lineHeight:1}},tot.cal),
-            e("div",{style:{fontSize:9,color:"var(--muted)",marginTop:2}},"/ ",TARGETS.calories)
-          )
-        ),
-        e("div",{style:{flex:1}},
-          e("div",{style:{fontFamily:"var(--fn-display)",fontSize:14,fontWeight:600,marginBottom:10}},"Daily Nutrition"),
-          [{l:"Protein",v:tot.p,mx:TARGETS.protein,u:"g",cl:"#E8913A"},{l:"Carbs",v:tot.c,mx:TARGETS.carbs,u:"g",cl:"#5B8C5A"},{l:"Fat",v:tot.f,mx:TARGETS.fat,u:"g",cl:"#7B68AE"}].map(n=>
-            e("div",{key:n.l,style:{marginBottom:7}},
-              e("div",{style:{display:"flex",justifyContent:"space-between",fontSize:11,color:"var(--muted)",marginBottom:2}},e("span",null,n.l),e("span",null,n.v,"/",n.mx,n.u)),
-              e("div",{className:"macro-bar"},e("div",{className:"macro-fill",style:{background:n.cl,width:Math.min(n.v/n.mx*100,100)+"%"}}))
-            )
-          )
-        )
-      ),
-      tot.cal===0&&e("div",{className:"hint"},"✨ No meals logged yet. Head to ",e("strong",null,"Meals")," to find ideas from your ingredients!"),
-      tot.cal>0&&tot.cal<TARGETS.calories&&e("div",{className:"hint"},"✨ You need ",e("strong",null,TARGETS.calories-tot.cal," more kcal")," today. Try a calorie-dense snack!")
-    ),
-    // Logged meals
-    meals.length>0&&e("div",{style:{marginBottom:14}},
-      e("h3",null,"Today's Meals"),
-      meals.map((m,i)=>e("div",{key:i,className:"section-sm",style:{display:"flex",alignItems:"center",justifyContent:"space-between"}},
-        e("div",null,
-          e("div",{style:{fontSize:13,fontWeight:600}},m.name),
-          e("div",{style:{fontSize:11,color:"var(--muted)",marginTop:2}},m.time," · ",m.cal," kcal · ",m.p,"g protein")
-        ),
-        e("button",{onClick:()=>rmMeal(i),style:{color:"var(--muted)",fontSize:20,padding:4}},"×")
-      ))
-    ),
-    // PhD mini
-    e("div",{className:"section"},
-      e("h3",{style:{marginBottom:12}},"PhD Progress"),
-      e("div",{style:{display:"flex",gap:6,flexWrap:"wrap"}},
-        PAPERS.map(p=>e("div",{key:p.id,style:{flex:"1 1 45%",padding:"10px 12px",borderRadius:10,background:p.color+"18",border:"1px solid "+p.color+"30"}},
-          e("div",{style:{fontSize:11,fontWeight:700,color:p.color,fontFamily:"var(--fn-display)"}},p.title),
-          e("div",{style:{fontSize:10,color:"var(--muted)",marginTop:2}},p.status)
-        ))
-      ),
-      e("button",{onClick:()=>setTab("phd"),style:{marginTop:12,width:"100%",padding:10,borderRadius:10,border:"1px solid var(--border)",fontSize:12,color:"var(--fg)",display:"flex",alignItems:"center",justifyContent:"center",gap:6}},"View details & stat ideas →")
-    ),
-    // Tip
-    e("div",{style:{background:"linear-gradient(135deg,#5B8C5A22,#E8913A18)",borderRadius:20,padding:20,border:"1px solid var(--border)"}},
-      e("div",{style:{fontSize:13,fontWeight:600,fontFamily:"var(--fn-display)",marginBottom:6}},"💡 Weight Gain Tip"),
-      e("div",{style:{fontSize:12,color:"var(--muted)",lineHeight:1.6}},"At 50 kg / 5'3\", aim for ~300–500 kcal surplus daily. Focus on calorie-dense vegetarian foods: ghee, paneer, peanut butter, full-fat dairy, nuts. Three meals + two snacks is your framework.")
-    )
-  );
-
-  // ── Meals ──
-  const Meals=()=>{
-    const recs=matchR();
-    const filtered=mealFilter==="all"?recs:recs.filter(r=>r.meal===mealFilter);
-    return e("div",{className:"page",key:"meals"},
-      e("div",{style:{paddingTop:16,marginBottom:16}},
-        e("h1",null,"Meal Ideas"),
-        e("p",{className:"sub"},"Tap ingredients you have — recipes adapt instantly")
-      ),
-      e("div",{style:{marginBottom:18}},
-        e("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:8}},
-          e("h3",{style:{margin:0}},"What's in your kitchen?"),
-          selIng.length>0&&e("button",{onClick:()=>setSelIng([]),style:{color:"var(--accent)",fontSize:11}},"Clear")
-        ),
-        e("div",{style:{display:"flex",flexWrap:"wrap",gap:0}},
-          INGREDIENTS.map(i=>e("button",{key:i,className:"chip"+(selIng.includes(i)?" active":""),onClick:()=>togIng(i)},i))
-        )
-      ),
-      e("div",{style:{display:"flex",marginBottom:14,overflowX:"auto"}},
-        ["all","breakfast","lunch","dinner","snack"].map(f=>e("button",{key:f,className:"filter-btn"+(mealFilter===f?" active":""),onClick:()=>setMealFilter(f)},f==="all"?"All":f.charAt(0).toUpperCase()+f.slice(1)))
-      ),
-      filtered.length===0&&e("div",{style:{textAlign:"center",padding:40,color:"var(--muted)",fontSize:13}},"No matching recipes. Try different ingredients."),
-      filtered.map((r,i)=>e("div",{key:i,className:"recipe-card"},
-        e("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"flex-start"}},
-          e("div",{style:{flex:1}},
-            e("div",{style:{display:"flex",alignItems:"center",gap:6,marginBottom:4}},
-              e("span",{className:"tag",style:{background:"var(--accent)18",color:"var(--accent)"}},r.meal),
-              r.mc&&r.mc===r.ing.length&&e("span",{className:"tag",style:{background:"#5B8C5A22",color:"#5B8C5A"}},"✓ ALL")
-            ),
-            e("div",{style:{fontFamily:"var(--fn-display)",fontSize:15,fontWeight:600,margin:"4px 0"}},r.name),
-            e("div",{style:{display:"flex",gap:10,fontSize:11,color:"var(--muted)",alignItems:"center"}},
-              e("span",{style:{display:"flex",alignItems:"center",gap:3}},I.fire," ",r.cal," kcal"),
-              e("span",{style:{display:"flex",alignItems:"center",gap:3}},I.clock," ",r.t," min"),
-              e("span",null,"P:",r.p,"g")
-            )
-          ),
-          e("button",{className:"log-btn",onClick:()=>logMeal(r)},"+ Log")
-        ),
-        e("div",{style:{marginTop:8,display:"flex",gap:0,flexWrap:"wrap"}},
-          r.ing.map(ig=>e("span",{key:ig,className:"ing-tag",style:{background:selIng.includes(ig)?"#5B8C5A22":"var(--ring-bg)",color:selIng.includes(ig)?"#5B8C5A":"var(--muted)",border:"1px solid "+(selIng.includes(ig)?"#5B8C5A30":"transparent")}},ig))
-        ),
-        r.tip&&e("div",{className:"hint",style:{marginTop:8,padding:"6px 10px",fontSize:11}},"💡 ",r.tip)
-      ))
-    );
-  };
-
-  // ── PhD ──
-  const PhD=()=>e("div",{className:"page",key:"phd"},
-    e("div",{style:{paddingTop:16,marginBottom:16}},
-      e("h1",null,"PhD Tracker"),
-      e("p",{className:"sub"},"Grapevine Research · 5 papers by 2028")
-    ),
-    e("div",{className:"section"},
-      e("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:12}},
-        e("h3",{style:{margin:0}},"Paper Pipeline"),
-        e("span",{style:{fontSize:11,color:"var(--muted)"}},PAPERS.filter(p=>p.status==="Revision"||p.status==="Drafting").length,"/5 active")
-      ),
-      PAPERS.map(p=>e("div",{key:p.id,className:"paper-card",onClick:()=>setExpPaper(expPaper===p.id?null:p.id),style:{border:"1px solid "+p.color+"30",background:p.color+"08"}},
-        e("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"center"}},
-          e("div",{style:{display:"flex",alignItems:"center",gap:10}},
-            e("div",{style:{width:10,height:10,borderRadius:"50%",background:p.color}}),
-            e("span",{style:{fontSize:13,fontWeight:600,fontFamily:"var(--fn-display)"}},p.title)
-          ),
-          e("span",{className:"tag",style:{background:p.color+"22",color:p.color}},p.status)
-        ),
-        expPaper===p.id&&e("div",{style:{marginTop:10,paddingTop:10,borderTop:"1px solid "+p.color+"20"}},
-          e("p",{style:{fontSize:12,color:"var(--muted)",lineHeight:1.6}},p.desc)
-        )
-      ))
-    ),
-    e("div",{className:"section"},
-      e("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:4}},
-        e("h3",{style:{margin:0}},"Statistical Analysis Ideas"),
-        e("button",{onClick:()=>setShowStats(!showStats),style:{color:"var(--accent)",fontSize:12}},showStats?"Collapse":"Expand")
-      ),
-      e("p",{style:{fontSize:11,color:"var(--muted)",margin:"4px 0 12px"}},"Methods for grapevine phenotypic/genotypic datasets"),
-      showStats&&STATS.map((s,i)=>e("div",{key:i,className:"stat-card"},
-        e("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:6}},
-          e("div",{style:{fontSize:13,fontWeight:600,fontFamily:"var(--fn-display)"}},s.m),
-          e("span",{className:"tag",style:{background:"var(--accent)18",color:"var(--accent)"}},"Papers ",s.pp)
-        ),
-        e("p",{style:{fontSize:11,color:"var(--muted)",lineHeight:1.5}},s.u)
-      )),
-      !showStats&&e("div",{style:{display:"flex",gap:6,flexWrap:"wrap"}},
-        STATS.slice(0,4).map((s,i)=>e("span",{key:i,style:{fontSize:10,padding:"4px 10px",borderRadius:8,background:"var(--ring-bg)",color:"var(--muted)",border:"1px solid var(--border)"}},s.m)),
-        e("span",{key:"more",onClick:()=>setShowStats(true),style:{fontSize:10,padding:"4px 10px",borderRadius:8,background:"var(--accent)12",color:"var(--accent)",cursor:"pointer"}},"+",STATS.length-4," more")
-      )
-    )
-  );
-
-  // ── Growth ──
-  const Growth=()=>e("div",{className:"page",key:"growth"},
-    e("div",{style:{paddingTop:16,marginBottom:16}},
-      e("h1",null,"Growth"),
-      e("p",{className:"sub"},"Skills & self-development")
-    ),
-    SKILLS.map((s,i)=>e("div",{key:i,className:"skill-card"},
-      e("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:8}},
-        e("div",null,
-          e("div",{style:{fontSize:14,fontWeight:600,fontFamily:"var(--fn-display)"}},s.name),
-          e("span",{style:{fontSize:10,color:"var(--accent)"}},s.cat)
-        ),
-        e("span",{style:{fontSize:20,fontWeight:700,fontFamily:"var(--fn-display)"}},s.prog,"%")
-      ),
-      e("div",{className:"macro-bar",style:{height:6}},e("div",{className:"macro-fill",style:{background:"var(--accent)",width:s.prog+"%"}})),
-      e("p",{style:{fontSize:11,color:"var(--muted)",marginTop:8}},s.note)
-    )),
-    e("div",{className:"section"},
-      e("h3",null,"Body Progress"),
-      e("div",{style:{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}},
-        [{l:"Current Weight",v:"50 kg"},{l:"Target",v:"55–58 kg"},{l:"Height",v:"5'3\" / 160cm"},{l:"Daily Surplus",v:"+300–500 kcal"}].map((d,i)=>
-          e("div",{key:i,className:"metric-box"},
-            e("div",{className:"metric-val"},d.v),
-            e("div",{className:"metric-label"},d.l)
-          )
-        )
-      ),
-      e("p",{style:{fontSize:11,color:"var(--muted)",marginTop:12,lineHeight:1.6}},"For healthy weight gain with muscle development: combine caloric surplus with bodyweight exercises (squats, lunges, push-ups) 3–4× per week. Progressive overload is key.")
-    ),
-    // Week overview
-    e("div",{className:"section",style:{marginTop:0}},
-      e("h3",null,"This Week"),
-      e("div",{style:{display:"flex",justifyContent:"space-between",gap:4}},
-        ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"].map((d,i)=>{
-          const dt=new Date();dt.setDate(dt.getDate()-(dt.getDay()||7)+i+1);
-          const k=dt.toISOString().slice(0,10);
-          const logged=weekLog[k]||0;
-          const pct=Math.min(logged/TARGETS.calories,1);
-          const isToday=k===getTodayKey();
-          return e("div",{key:d,style:{flex:1,textAlign:"center"}},
-            e("div",{style:{fontSize:10,color:isToday?"var(--accent)":"var(--muted)",fontWeight:isToday?700:400,marginBottom:4}},d),
-            e("div",{style:{height:40,borderRadius:6,background:"var(--ring-bg)",position:"relative",overflow:"hidden"}},
-              e("div",{style:{position:"absolute",bottom:0,width:"100%",height:pct*100+"%",borderRadius:6,background:pct>=0.8?"var(--accent)":"var(--accent)44",transition:"height 0.4s"}})
-            )
-          );
-        })
-      )
-    )
-  );
-
-  // ── Navigation ──
-  const tabs=[{id:"home",icon:I.home,label:"Home"},{id:"meals",icon:I.meal,label:"Meals"},{id:"phd",icon:I.phd,label:"PhD"},{id:"growth",icon:I.grow,label:"Growth"}];
-
-  return e("div",{className:"app"},
-    Splash(),
-    e("div",{className:"content",ref:contentRef},
-      tab==="home"&&Home(),
-      tab==="meals"&&Meals(),
-      tab==="phd"&&PhD(),
-      tab==="growth"&&Growth()
-    ),
-    e("nav",{className:"nav"},
-      tabs.map(t=>e("button",{key:t.id,className:"nav-btn"+(tab===t.id?" active":""),onClick:()=>setTab(t.id)},t.icon,e("span",null,t.label)))
-    )
-  );
+// ── TODAY TAB ──
+function TabToday(){
+var pl=WEEK[ti()];
+var prs=[{slot:"Breakfast",r:gr(pl.b),tm:"8:00 AM"},{slot:"Mid-Morning Snack",r:gr(pl.s1),tm:"10:30 AM"},{slot:"Lunch",r:gr(pl.l),tm:"1:00 PM"},{slot:"Evening Snack",r:gr(pl.s2),tm:"4:30 PM"},{slot:"Dinner",r:gr(pl.d),tm:"7:30 PM"}];
+return h("div",{style:{padding:"0 18px 20px"}},
+h("div",{style:{paddingTop:16,marginBottom:20}},
+h("p",{style:{fontSize:11,color:"var(--mt)",textTransform:"uppercase",letterSpacing:"0.06em",margin:0}},new Date().toLocaleDateString("en-US",{weekday:"long",month:"long",day:"numeric"})),
+h("h1",{style:{fontFamily:"var(--fd)",fontSize:26,fontWeight:700,margin:"2px 0 0"}},grt()+" \u{1F33F}")),
+h("div",{style:{background:"var(--card)",borderRadius:22,padding:22,marginBottom:14,border:"1px solid var(--bd)"}},
+h("div",{style:{display:"flex",alignItems:"center",gap:20}},
+h(Ring,{value:tot.cal,max:PROFILE.dailyCal,size:108,sw:10,color:"var(--ac)"},h("div",{style:{fontSize:22,fontWeight:700,fontFamily:"var(--fd)",lineHeight:1}},tot.cal),h("div",{style:{fontSize:9,color:"var(--mt)"}},"/ "+PROFILE.dailyCal)),
+h("div",{style:{flex:1}},h("div",{style:{fontFamily:"var(--fd)",fontSize:13,fontWeight:600,marginBottom:12}},"Daily Progress"),
+[{l:"Protein",v:tot.p,mx:PROFILE.protein,u:"g",cl:"#E07B4C"},{l:"Carbs",v:tot.c,mx:PROFILE.carbs,u:"g",cl:"#5B8C5A"},{l:"Fat",v:tot.f,mx:PROFILE.fat,u:"g",cl:"#8B6BAE"}].map(function(n){return h("div",{key:n.l,style:{marginBottom:7}},h("div",{style:{display:"flex",justifyContent:"space-between",fontSize:11,color:"var(--mt)",marginBottom:2}},h("span",null,n.l),h("span",{style:{fontWeight:600}},n.v+"/"+n.mx+n.u)),h("div",{style:{height:5,borderRadius:3,background:"var(--trk)",overflow:"hidden"}},h("div",{style:{height:"100%",borderRadius:3,background:n.cl,width:Math.min(n.v/n.mx*100,100)+"%",transition:"width 0.6s"}})))}))),
+// Water
+h("div",{style:{marginTop:16,paddingTop:14,borderTop:"1px solid var(--bd)"}},
+h("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:8}},h("span",{style:{fontSize:12,fontWeight:600,fontFamily:"var(--fd)"}},"\u{1F4A7} Water"),h("span",{style:{fontSize:11,color:"var(--mt)"}},water+" / 8")),
+h("div",{style:{display:"flex",gap:6}},Array.from({length:8}).map(function(_,i){return h("button",{key:i,onClick:function(){setWater(i<water?i:i+1)},style:{flex:1,height:28,borderRadius:8,border:"1px solid var(--bd)",background:i<water?"#4A9CC630":"var(--trk)"}})}))),
+rem>0&&tot.cal>0&&h("div",{style:{marginTop:14,padding:"10px 14px",borderRadius:12,background:"var(--hint-bg)",border:"1px solid var(--hint-bd)",fontSize:12,color:"var(--hint-fg)"}},"\u2728 "+rem+" kcal remaining."),
+rem<=0&&tot.cal>0&&h("div",{style:{marginTop:14,padding:"10px 14px",borderRadius:12,background:"#5B8C5A18",border:"1px solid #5B8C5A30",fontSize:12,color:"#5B8C5A",fontWeight:600}},"\u{1F389} Target reached! "+tot.cal+" kcal!")),
+// Logged
+logged.length>0&&h("div",{style:{marginBottom:14}},h("h3",{style:{fontFamily:"var(--fd)",fontSize:13,fontWeight:600,margin:"0 0 8px"}},"Logged Today"),logged.map(function(m,i){return h("div",{key:i,style:{display:"flex",alignItems:"center",justifyContent:"space-between",background:"var(--card)",borderRadius:12,padding:"10px 14px",marginBottom:6,border:"1px solid var(--bd)"}},h("div",null,h("div",{style:{fontSize:13,fontWeight:600}},me(m.meal)+" "+m.name),h("div",{style:{fontSize:10,color:"var(--mt)",marginTop:2}},m.lt+" \u00B7 "+m.cal+" kcal \u00B7 "+m.p+"g protein")),h("button",{onClick:function(){rmR(i)},style:{color:"var(--mt)",fontSize:18,padding:4}},"\u00D7"))})),
+// Plan
+h("div",{style:{marginBottom:14}},
+h("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:10}},h("h3",{style:{fontFamily:"var(--fd)",fontSize:13,fontWeight:600,margin:0}},"Today's Plan"),h("span",{style:{fontSize:10,color:"var(--mt)",padding:"3px 10px",borderRadius:8,background:"var(--trk)"}},pl.note)),
+prs.map(function(m,i){return h("div",{key:i,onClick:function(){setModal(m.r)},style:{display:"flex",alignItems:"center",gap:14,padding:"12px 14px",background:"var(--card)",borderRadius:14,marginBottom:6,border:"1px solid var(--bd)",cursor:"pointer"}},h("div",{style:{width:36,height:36,borderRadius:10,background:"var(--ac)14",display:"flex",alignItems:"center",justifyContent:"center",fontSize:16,flexShrink:0}},me(m.r.meal)),h("div",{style:{flex:1}},h("div",{style:{fontSize:10,color:"var(--ac)",fontWeight:600,textTransform:"uppercase"}},m.slot),h("div",{style:{fontSize:13,fontWeight:600,fontFamily:"var(--fd)"}},m.r.name)),h("div",{style:{textAlign:"right",flexShrink:0}},h("div",{style:{fontSize:14,fontWeight:700,fontFamily:"var(--fd)"}},m.r.cal),h("div",{style:{fontSize:9,color:"var(--mt)"}},"kcal")))}),
+h("div",{style:{textAlign:"center",padding:10,fontSize:12,color:"var(--mt)",background:"var(--trk)",borderRadius:12,marginTop:4}},"Plan total: ",h("strong",null,pl.cal+" kcal")," \u00B7 Tap for recipes")))
 }
 
-ReactDOM.createRoot(document.getElementById("root")).render(e(App));
+// ── WEEK TAB ──
+function TabWeek(){
+var pl=WEEK[weekDay];
+var ms=[{slot:"\u{1F305} Breakfast",r:gr(pl.b),tm:"8:00 AM"},{slot:"\u{1F95C} Snack",r:gr(pl.s1),tm:"10:30 AM"},{slot:"\u{2600}\u{FE0F} Lunch",r:gr(pl.l),tm:"1:00 PM"},{slot:"\u{1F36A} Snack",r:gr(pl.s2),tm:"4:30 PM"},{slot:"\u{1F319} Dinner",r:gr(pl.d),tm:"7:30 PM"}];
+var dp=ms.reduce(function(s,m){return s+m.r.p},0);
+return h("div",{style:{padding:"0 18px 20px"}},
+h("div",{style:{paddingTop:16,marginBottom:16}},h("h1",{style:{fontFamily:"var(--fd)",fontSize:24,fontWeight:700,margin:0}},"Weekly Plan"),h("p",{style:{fontSize:12,color:"var(--mt)",margin:"4px 0 0"}},"Avg "+Math.round(WEEK.reduce(function(s,p){return s+p.cal},0)/7)+" kcal/day")),
+h("div",{style:{display:"flex",gap:4,marginBottom:16}},WEEK.map(function(p,i){return h("button",{key:i,onClick:function(){setWeekDay(i)},style:{flex:1,padding:"10px 2px",borderRadius:12,border:weekDay===i?"2px solid var(--ac)":"1px solid var(--bd)",background:weekDay===i?"var(--ac)14":"var(--card)",textAlign:"center",minWidth:42}},h("div",{style:{fontSize:10,fontWeight:weekDay===i?700:400,color:weekDay===i?"var(--ac)":"var(--mt)"}},p.day.slice(0,3)),h("div",{style:{fontSize:8,color:"var(--mt)",marginTop:2}},p.cal),i===ti()&&h("div",{style:{width:4,height:4,borderRadius:2,background:"var(--ac)",margin:"3px auto 0"}}))})),
+h("div",{style:{background:"var(--card)",borderRadius:18,padding:18,marginBottom:12,border:"1px solid var(--bd)"}},
+h("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:14}},h("h2",{style:{fontFamily:"var(--fd)",fontSize:18,fontWeight:700,margin:0}},pl.day),h("span",{style:{fontSize:10,padding:"3px 10px",borderRadius:8,background:"var(--hint-bg)",color:"var(--hint-fg)"}},pl.note)),
+h("div",{style:{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:8,marginBottom:16}},[{l:"Calories",v:pl.cal,cl:"var(--ac)"},{l:"Protein",v:dp+"g",cl:"#E07B4C"},{l:"Meals",v:"5",cl:"#5B8C5A"}].map(function(m){return h("div",{key:m.l,style:{textAlign:"center",padding:"12px 4px",borderRadius:12,background:"var(--trk)"}},h("div",{style:{fontSize:18,fontWeight:700,fontFamily:"var(--fd)",color:m.cl}},m.v),h("div",{style:{fontSize:9,color:"var(--mt)",marginTop:2}},m.l))})),
+ms.map(function(m,i){return h("div",{key:i,onClick:function(){setModal(m.r)},style:{display:"flex",gap:12,cursor:"pointer"}},h("div",{style:{display:"flex",flexDirection:"column",alignItems:"center",width:20}},h("div",{style:{width:10,height:10,borderRadius:"50%",background:"var(--ac)",flexShrink:0,marginTop:6}}),i<ms.length-1&&h("div",{style:{width:2,flex:1,background:"var(--bd)",margin:"4px 0"}})),h("div",{style:{flex:1,paddingBottom:16}},h("div",{style:{fontSize:10,color:"var(--mt)"}},m.tm),h("div",{style:{fontSize:11,fontWeight:600,color:"var(--ac)",marginTop:2}},m.slot),h("div",{style:{fontSize:14,fontWeight:600,fontFamily:"var(--fd)",marginTop:2}},m.r.name),h("div",{style:{fontSize:10,color:"var(--mt)",marginTop:4}},"\u{1F525} "+m.r.cal+" kcal \u00B7 \u{1F4AA} "+m.r.p+"g \u00B7 \u23F1 "+m.r.t+"m")))})))
+}
+
+// ── PANTRY TAB ──
+function TabPantry(){
+var recs=getMatches();
+var filtered=mf==="all"?recs:recs.filter(function(r){return r.meal===mf});
+return h("div",{style:{padding:"0 18px 20px"}},
+h("div",{style:{paddingTop:16,marginBottom:16}},h("h1",{style:{fontFamily:"var(--fd)",fontSize:24,fontWeight:700,margin:0}},"My Pantry"),h("p",{style:{fontSize:12,color:"var(--mt)",margin:"4px 0 0"}},pantry.length?pantry.length+" items \u00B7 "+filtered.length+" matches":"Select ingredients below")),
+h("div",{style:{display:"flex",gap:6,marginBottom:12,overflowX:"auto",paddingBottom:4}},Object.keys(PANTRY).map(function(c){return h("button",{key:c,onClick:function(){setPCat(c)},style:{padding:"7px 14px",borderRadius:14,fontSize:11,whiteSpace:"nowrap",border:pCat===c?"1.5px solid var(--ac)":"1px solid var(--bd)",background:pCat===c?"var(--ac)14":"var(--card)",color:pCat===c?"var(--ac)":"var(--mt)",fontWeight:pCat===c?600:400}},c)})),
+h("div",{style:{background:"var(--card)",borderRadius:18,padding:16,marginBottom:14,border:"1px solid var(--bd)"}},
+h("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:10}},h("h3",{style:{fontFamily:"var(--fd)",fontSize:13,fontWeight:600,margin:0}},pCat),pantry.length>0&&h("button",{onClick:function(){setPantry([])},style:{color:"var(--ac)",fontSize:11}},"Clear")),
+h("div",{style:{display:"flex",flexWrap:"wrap",gap:6}},PANTRY[pCat].map(function(ig){var a=pantry.indexOf(ig)>-1;return h("button",{key:ig,onClick:function(){togP(ig)},style:{padding:"7px 14px",borderRadius:20,fontSize:12,border:a?"1.5px solid var(--ac)":"1px solid var(--bd)",background:a?"var(--ac)":"var(--card)",color:a?"#fff":"var(--fg)",fontWeight:a?600:400,transition:"all 0.2s"}},(a?"\u2713 ":"")+ig)}))),
+pantry.length>0&&h("div",{style:{display:"flex",flexWrap:"wrap",gap:4,marginBottom:12}},pantry.map(function(ig){return h("span",{key:ig,onClick:function(){togP(ig)},style:{fontSize:10,padding:"3px 10px",borderRadius:12,background:"var(--ac)18",color:"var(--ac)",cursor:"pointer",fontWeight:600}},ig+" \u00D7")})),
+h("div",{style:{display:"flex",gap:6,marginBottom:12}},["all","breakfast","lunch","dinner","snack"].map(function(f){return h("button",{key:f,onClick:function(){setMf(f)},style:{padding:"6px 12px",borderRadius:14,fontSize:10,border:mf===f?"1.5px solid var(--ac)":"1px solid var(--bd)",background:mf===f?"var(--ac)":"transparent",color:mf===f?"#fff":"var(--mt)",textTransform:"capitalize"}},f==="all"?"All":f)})),
+filtered.length===0&&h("div",{style:{textAlign:"center",padding:40,color:"var(--mt)",fontSize:13}},pantry.length?"No matches":"Select ingredients above"),
+filtered.map(function(r,i){return h("div",{key:r.id||i,onClick:function(){setModal(r)},style:{background:"var(--card)",borderRadius:16,padding:16,marginBottom:10,border:"1px solid var(--bd)",cursor:"pointer"}},h("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"flex-start"}},h("div",{style:{flex:1}},h("div",{style:{display:"flex",alignItems:"center",gap:6,marginBottom:4}},h("span",{style:{fontSize:14}},me(r.meal)),h("span",{style:{fontSize:9,textTransform:"uppercase",fontWeight:700,color:"var(--ac)"}},r.meal),r.mc&&r.mc===r.tl&&h("span",{style:{fontSize:8,padding:"2px 6px",borderRadius:6,background:"#5B8C5A20",color:"#5B8C5A",fontWeight:700}},"\u2713 ALL")),h("div",{style:{fontFamily:"var(--fd)",fontSize:15,fontWeight:600,margin:"4px 0 6px"}},r.name),h("div",{style:{fontSize:11,color:"var(--mt)"}},"\u{1F525} "+r.cal+" \u00B7 \u{1F4AA} "+r.p+"g \u00B7 \u23F1 "+r.t+"m")),h("button",{onClick:function(e){e.stopPropagation();logR(r)},style:{padding:"8px 14px",borderRadius:10,background:"var(--ac)",color:"#fff",fontSize:11,fontWeight:600,whiteSpace:"nowrap",flexShrink:0,alignSelf:"center"}},"+ Log")),h("div",{style:{display:"flex",flexWrap:"wrap",gap:4,marginTop:8}},r.ing.slice(0,5).map(function(ig){return h("span",{key:ig,style:{fontSize:9,padding:"2px 8px",borderRadius:6,background:pantry.indexOf(ig)>-1?"#5B8C5A18":"var(--trk)",color:pantry.indexOf(ig)>-1?"#5B8C5A":"var(--mt)"}},ig)})))}))
+}
+
+// ── PROFILE TAB ──
+function TabProfile(){return h("div",{style:{padding:"0 18px 20px"}},
+h("div",{style:{paddingTop:16,marginBottom:16}},h("h1",{style:{fontFamily:"var(--fd)",fontSize:24,fontWeight:700,margin:0}},"My Profile")),
+h("div",{style:{background:"var(--card)",borderRadius:20,padding:20,marginBottom:14,border:"1px solid var(--bd)"}},h("h3",{style:{fontFamily:"var(--fd)",fontSize:14,fontWeight:600,margin:"0 0 14px"}},"Body Stats"),h("div",{style:{display:"grid",gridTemplateColumns:"repeat(2,1fr)",gap:10}},[{l:"Current",v:"50 kg",i:"\u2696\u{FE0F}"},{l:"Target",v:"55\u201358 kg",i:"\u{1F3AF}"},{l:"Height",v:"5'3\"",i:"\u{1F4CF}"},{l:"BMI",v:"19.5",i:"\u{1F4CA}"},{l:"BMR",v:"1,240",i:"\u{1F525}"},{l:"TDEE",v:"1,735",i:"\u26A1"}].map(function(d,i){return h("div",{key:i,style:{padding:14,borderRadius:14,background:"var(--trk)",textAlign:"center"}},h("div",{style:{fontSize:16,marginBottom:4}},d.i),h("div",{style:{fontSize:16,fontWeight:700,fontFamily:"var(--fd)"}},d.v),h("div",{style:{fontSize:10,color:"var(--mt)",marginTop:2}},d.l))}))),
+h("div",{style:{background:"var(--card)",borderRadius:20,padding:20,marginBottom:14,border:"1px solid var(--bd)"}},h("h3",{style:{fontFamily:"var(--fd)",fontSize:14,fontWeight:600,margin:"0 0 14px"}},"Daily Targets"),h("div",{style:{display:"grid",gridTemplateColumns:"repeat(2,1fr)",gap:10}},[{l:"Calories",v:"2,200",s:"TDEE+465",cl:"var(--ac)"},{l:"Protein",v:"90g",s:"1.8g/kg",cl:"#E07B4C"},{l:"Carbs",v:"285g",s:"52%",cl:"#5B8C5A"},{l:"Fat",v:"68g",s:"28%",cl:"#8B6BAE"}].map(function(d,i){return h("div",{key:i,style:{padding:14,borderRadius:14,background:d.cl+"10",border:"1px solid "+d.cl+"25"}},h("div",{style:{fontSize:18,fontWeight:700,fontFamily:"var(--fd)",color:d.cl}},d.v),h("div",{style:{fontSize:11,fontWeight:600,marginTop:2}},d.l),h("div",{style:{fontSize:9,color:"var(--mt)",marginTop:2}},d.s))}))),
+h("div",{style:{background:"var(--card)",borderRadius:20,padding:20,marginBottom:14,border:"1px solid var(--bd)"}},h("h3",{style:{fontFamily:"var(--fd)",fontSize:14,fontWeight:600,margin:"0 0 14px"}},"Meal Timing"),[{tm:"8:00",m:"Breakfast",cal:"400\u2013550"},{tm:"10:30",m:"Snack",cal:"200\u2013350"},{tm:"1:00",m:"Lunch",cal:"500\u2013650"},{tm:"4:30",m:"Snack",cal:"200\u2013350"},{tm:"7:30",m:"Dinner",cal:"400\u2013500"}].map(function(m,i){return h("div",{key:i,style:{display:"flex",gap:12,marginBottom:12}},h("div",{style:{width:40,textAlign:"right",fontSize:11,fontWeight:600,flexShrink:0}},m.tm),h("div",{style:{width:2,background:"var(--ac)30",borderRadius:1}}),h("div",null,h("div",{style:{fontSize:13,fontWeight:600,fontFamily:"var(--fd)"}},m.m),h("div",{style:{fontSize:11,color:"var(--ac)"}},m.cal+" kcal")))})),
+h("div",{style:{padding:18,borderRadius:18,background:"var(--hint-bg)",border:"1px solid var(--hint-bd)"}},h("div",{style:{fontSize:12,fontWeight:700,color:"var(--ac)",marginBottom:8,fontFamily:"var(--fd)"}},"\u{1F9E0} Weight Gain Principles"),["Eat every 2.5\u20133 hours. Never skip.","Ghee, peanut butter, full-fat dairy = calorie multipliers.","Drink calories \u2014 shakes are easier than solids.","Consistency beats perfection. Log everything.","Bodyweight exercises 3\u00D7/week for muscle.","Sleep 7\u20138 hours. Growth hormone peaks in deep sleep.","Weigh weekly. Aim 0.3\u20130.5 kg/week gain."].map(function(t,i){return h("div",{key:i,style:{display:"flex",gap:8,marginBottom:8}},h("span",{style:{color:"var(--ac)",fontWeight:700,fontSize:12,flexShrink:0}},i+1+"."),h("p",{style:{fontSize:12,color:"var(--hint-fg)",margin:0,lineHeight:1.5}},t))}))
+)}
+
+var tabs=[{id:"today",i:"\u{1F3E0}",l:"Today"},{id:"week",i:"\u{1F4C5}",l:"Week"},{id:"pantry",i:"\u{1F958}",l:"Pantry"},{id:"profile",i:"\u{1F464}",l:"Profile"}];
+
+return h("div",{style:{maxWidth:430,margin:"0 auto",height:"100dvh",position:"relative",background:"var(--bg)",overflow:"hidden",display:"flex",flexDirection:"column"}},
+h("div",{ref:cr,style:{flex:1,overflowY:"auto",WebkitOverflowScrolling:"touch",paddingBottom:80},key:tab},h("div",{style:{animation:"fadeUp 0.3s ease both"}},tab==="today"&&TabToday(),tab==="week"&&TabWeek(),tab==="pantry"&&TabPantry(),tab==="profile"&&TabProfile())),
+h("nav",{style:{position:"fixed",bottom:0,left:"50%",transform:"translateX(-50%)",width:"100%",maxWidth:430,background:"var(--nav-bg)",backdropFilter:"blur(16px)",WebkitBackdropFilter:"blur(16px)",borderTop:"1px solid var(--bd)",display:"flex",justifyContent:"space-around",padding:"6px 0 calc(6px + env(safe-area-inset-bottom))",zIndex:100}},tabs.map(function(t){return h("button",{key:t.id,onClick:function(){setTab(t.id)},style:{display:"flex",flexDirection:"column",alignItems:"center",gap:1,padding:"6px 16px",color:tab===t.id?"var(--ac)":"var(--mt)"}},h("span",{style:{fontSize:18}},t.i),h("span",{style:{fontSize:10,fontWeight:tab===t.id?600:400}},t.l))})),
+h(Modal,{recipe:modal,onClose:function(){setModal(null)},onLog:logR}));
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(h(App));
 </script>
 </body>
 </html>
